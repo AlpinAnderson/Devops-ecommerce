@@ -1,0 +1,283 @@
+/* Tampilan tombol switch untuk dark mode */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 180px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+    overflow: hidden;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    z-index: 0;
+}
+
+input:checked + .slider {
+    background-color: #2b2c2c;
+}
+
+input:checked + .slider:before {
+    transform: translateX(146px);
+}
+
+/* Ikon matahari dan bulan untuk dark mode */
+.icon-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.icon-sun,
+.icon-moon {
+    font-size: 1.4em;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+}
+
+.icon-sun {
+    left: 0px;
+    opacity: 1;
+}
+
+.icon-moon {
+    right: 0px;
+    opacity: 0;
+}
+
+input:checked ~ .slider .icon-sun {
+    opacity: 0;
+}
+
+input:checked ~ .slider .icon-moon {
+    opacity: 1;
+}
+
+/* Teks untuk mode siang dan malam */
+.mode-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.mode-text.light-mode {
+    opacity: 1;
+    color: #000;
+}
+
+.mode-text.dark-mode {
+    opacity: 0;
+    color: #fff;
+}
+
+input:checked ~ .slider .mode-text.light-mode {
+    opacity: 0;
+}
+
+input:checked ~ .slider .mode-text.dark-mode {
+    opacity: 1;
+}
+
+/* Gaya dasar untuk seluruh halaman */
+body {
+    background-color: #ffffff;
+    color: #000000;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark mode untuk body */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* Elemen tambahan yang berubah dalam dark mode */
+body.dark-mode header,
+body.dark-mode footer,
+body.dark-mode .card {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+/* Dark mode untuk halaman detail produk */
+#prod-detail-page, #prod-detail-page * {
+    background-color: #ffffff;
+    color: #000000;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+body.dark-mode #prod-detail-page,
+body.dark-mode #prod-detail-page * {
+    background-color: #121212 !important;
+    color: #ffffff !important;
+}
+
+/* Mengatur latar belakang dan teks di tabel produk untuk dark mode */
+body.dark-mode #detail-table,
+body.dark-mode #detail-table td {
+    background-color: #1e1e1e;
+    color: #ffffff !important;
+}
+
+/* Warna teks "Out of stock" tetap merah */
+#prod-detail-page h1[style="color: red;"],
+body.dark-mode #prod-detail-page h1[style="color: red;"] {
+    color: red !important;
+}
+
+/* Styling khusus untuk cart dan tombol dalam dark mode */
+body.dark-mode .cart-text,
+body.dark-mode .add-to-cart,
+body.dark-mode #filter-btn,
+body.dark-mode h5.mb-0,
+body.dark-mode div a p {
+    color: #ffffff !important;
+}
+
+/* Styling untuk filter produk */
+#offcanvasWithBothOptions {
+    background-color: white;  /* default white background */
+    color: black;  /* default black text */
+    transition: background-color 0.3s, color 0.3s; /* transisi saat mode berubah */
+}
+
+/* Dark mode untuk filter produk */
+body.dark-mode #offcanvasWithBothOptions {
+    background-color: #121212;  /* dark mode background */
+    color: white;  /* dark mode text */
+}
+
+/* Tombol filter */
+body.dark-mode #filter-btn {
+    background-color: #444;  /* tombol dengan latar belakang gelap */
+    color: white;  /* teks putih pada tombol */
+}
+
+/* Styling untuk halaman login dan sign up */
+form.login {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #ccc;
+    padding: 2rem;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark mode untuk form login dan sign up */
+body.dark-mode form.login {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+/* Gaya untuk input dan tombol pada form login/signup */
+form.login input,
+form.login button {
+    background-color: #f0f0f0;
+    color: #000000;
+    border: 1px solid #ccc;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark mode untuk input dan tombol pada form */
+body.dark-mode form.login input,
+body.dark-mode form.login button {
+    background-color: #333;
+    color: #ffffff;
+    border: 1px solid #444;
+}
+
+/* Tombol utama untuk login/sign up */
+form.login button.primaryAction {
+    background-color: #007bff;
+    color: white;
+}
+
+body.dark-mode form.login button.primaryAction {
+    background-color: #0056b3;
+}
+
+/* Tombol link tambahan (forgot password, sign up) */
+form.login a {
+    color: #007bff;
+}
+
+body.dark-mode form.login a {
+    color: #66aaff;
+}
+
+/* Elemen social account */
+.socialaccount_ballot {
+    background-color: #ffffff;
+    color: #000000;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode .socialaccount_ballot {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.socialaccount_providers {
+    list-style: none;
+    padding: 0;
+}
+
+body.dark-mode .socialaccount_providers li {
+    color: #ffffff;
+}
+
+.socialaccount_providers a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+body.dark-mode .socialaccount_providers a {
+    color: #66aaff;
+}
+
+/* "Forgot password?" dan tombol login/sign up */
+button.primaryAction, a.button.secondaryAction {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+body.dark-mode button.primaryAction, body.dark-mode a.button.secondaryAction {
+    background-color: #0056b3;
+}
