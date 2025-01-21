@@ -1,0 +1,11 @@
+global:
+  scrape_interval: 15s  # Interval pengambilan data
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']  # Target Prometheus itu sendiri
+
+  - job_name: 'your-app'
+    static_configs:
+      - targets: ['localhost:8002']  # Ganti dengan alamat aplikasi Anda

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wrk-pod
+spec:
+  containers:
+  - name: wrk
+    image: williamyeh/wrk
+    args:
+    - "-t12"
+    - "-c400"
+    - "-d30s"
+    - "http://ecommerce-service:80//"
