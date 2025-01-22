@@ -35,8 +35,8 @@ jobs:
     - name: Login to Docker Hub
       uses: docker/login-action@v2
       with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_TOKEN }}
         
     - name: Build and push Docker image
       uses: docker/build-push-action@v4
@@ -48,7 +48,7 @@ jobs:
           ${{ secrets.DOCKER_USERNAME }}/ddice-backend:latest
           ${{ secrets.DOCKER_USERNAME }}/ddice-backend:${{ github.sha }}
         cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/ddice-backend:buildcache
-        cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/ddice-backend:buildcache,mode=max
+        cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_TOKEN }}/ddice-backend:buildcache,mode=max
         
     - name: Install kubectl
       uses: azure/setup-kubectl@v3
